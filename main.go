@@ -19,8 +19,9 @@ func main() {
 	var firstName string
 	var lastName string
 	var email string
-	
 	var userTicket uint
+	// define arr size
+	var bookings = []string{}
 
 	//input
 	fmt.Println("Enter your first name: ")
@@ -28,15 +29,27 @@ func main() {
 
 	fmt.Println("Enter your last name: ")
 	fmt.Scan(&lastName)
+
+	
 	
 	fmt.Println("Enter your email: ")
 	fmt.Scan(&email)
 	
 	fmt.Println("Enter tickets number: ")
 	fmt.Scan(&userTicket)
-
-	remainingTicket -= userTicket
 	
+	remainingTicket -= userTicket
+	bookings = append(bookings, firstName + " " + lastName)
+	// bookings[0] = firstName + " " + lastName
+	
+	// access arr
+	// fmt.Printf("The whole slice%v\n", bookings)
+	// fmt.Printf("The first value %v\n", bookings[0])
+	// fmt.Printf("The type of this %T\n", bookings[0])
+	// fmt.Printf("The size of this %v\n", len(bookings))
+
 	fmt.Printf("Thankyou %v %v for booking %v tickets. You will receive a confirmation at email: %v", firstName, lastName, userTicket,email)
 	fmt.Printf("Remains ticket available now: %v %v\n", remainingTicket, conferenceName)
+
+	fmt.Printf("These are all bookings in our app: %v\n", bookings)
 }
