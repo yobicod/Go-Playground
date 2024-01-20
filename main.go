@@ -5,17 +5,17 @@ import (
 	"strings"
 )
 
-func main() {
-	var conferenceName string = "Go Conference"
-	// conferenceName := "Go Conference"
+var conferenceName string = "Go Conference"
 
-	const conferenceTicket int = 50
-	// not accept negative value
-	var remainingTicket uint = 50
-	var bookings = []string{}
+const conferenceTicket int = 50
+
+var remainingTicket uint = 50
+var bookings = []string{}
+
+func main() {
 
 	// call greet user msg
-	greetUsers(conferenceName, conferenceTicket, remainingTicket)
+	greetUsers()
 
 	for remainingTicket > 0 && len(bookings) < 50 {
 		// get user input
@@ -26,7 +26,7 @@ func main() {
 
 		if isValidName && isValidEmail && isValidTicketNumber {
 			// call book ticket
-			bookTicket(remainingTicket, userTicket, bookings, firstName, lastName, email, conferenceName)
+			bookTicket(userTicket, firstName, lastName, email)
 
 			// call getFirstName to print logs
 			firstNames := getFirstName(bookings)
@@ -55,7 +55,7 @@ func main() {
 	}
 }
 
-func greetUsers(conferenceName string, conferenceTicket int, remainingTicket uint) {
+func greetUsers() {
 	fmt.Printf("Welcome to our %v\n", conferenceName)
 	fmt.Printf("Conference name is type %T\nRemaining ticket is %T\n", conferenceName, remainingTicket)
 	fmt.Printf("We have total of %v tickets and %v are still available.\n", conferenceTicket, remainingTicket)
@@ -100,10 +100,10 @@ func getUserInput() (string, string, string, uint) {
 	return firstName, lastName, email, userTicket
 }
 
-func bookTicket(remainingTicket uint, userTicket uint, bookings []string, firstName string, lastName string, email string, conferenceName string) {
+func bookTicket(userTicket uint, firstName string, lastName string, email string) {
 	remainingTicket -= userTicket
 	bookings = append(bookings, firstName+" "+lastName)
 
-	fmt.Printf("Thankyou %v %v for booking %v tickets. You will receive a confirmation at email: %v", firstName, lastName, userTicket, email)
+	fmt.Printf("Thankyou %v %v for booking %v tickets. You will receive a confirmation at email: %v\n", firstName, lastName, userTicket, email)
 	fmt.Printf("Remains ticket available now: %v %v\n", remainingTicket, conferenceName)
 }
